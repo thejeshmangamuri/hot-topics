@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loaded Content by Ajax</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="masthead">
+        <div class="masthead">
+          <img src="img/background-image-01.png" alt="">
+          <h5> THEJ - Boost your Brand Mark</h5>
+        <nav class="nav-bar">
+            <a href="partials/home.html" class="nav-item">HOME</a>
+            <a href="partials/portfolio.html" class="nav-item">PORTFOLIO</a>
+        </nav>
+        </div>
+    </header>
+
+        <!-- Main Content -->
+   
+    <main id="main-content">
+     <section id="1">
+      
+     </section>
+  </main>
+
+
+    <footer>
+      <div class="social-media">
+        <h4>Social Media Information</h4>
+        <a href="https://www.instagram.com/"><img id="icon" src="img/insta.png" alt="Instagram"></a>
+        <a href="https://www.facebook.com/"><img id="icon" src="img/fb.png" alt="Facebook"> </a>
+        <a href="https://www.twitter.com/"><img id="icon" src="img/twitter.png" alt="Twitter"> </a>
+        <a href="https://www.linkedin.com/"><img id="icon" src="img/link.png" alt="Linkedin"></a>       
+    </div>
+    <div class="company-info">
+      <h4>Ottawa, Ontario</h4>
+  </div>
+    </footer>
+    <script src="js/index.js"></script>
+    <script>
+      // Fetch the JSON file
+      fetch('article.json')
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          // Loop through the articles and create HTML elements
+          const articleSection = document.querySelector('.article');
+          data.articles.forEach(article => {
+            const articleDiv = document.createElement('div');
+            articleDiv.classList.add('article');
+            articleDiv.innerHTML = `
+              <h2>${article.title}</h2>
+              <p><strong>By ${article.author} on ${article.date}</strong></p>
+              ${article.content}
+            `;
+            articleSection.appendChild(articleDiv);
+          });
+        })
+        .catch(error => {
+          console.error('There was a problem fetching the articles:', error);
+        });
+    </script>
+</body>
+</html>
+
+
+
