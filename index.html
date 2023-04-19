@@ -40,33 +40,6 @@
   </div>
     </footer>
     <script src="js/index.js"></script>
-    <script>
-      // Fetch the JSON file
-      fetch('article.json')
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error('Network response was not ok.');
-        })
-        .then(data => {
-          // Loop through the articles and create HTML elements
-          const articleSection = document.querySelector('.article');
-          data.articles.forEach(article => {
-            const articleDiv = document.createElement('div');
-            articleDiv.classList.add('article');
-            articleDiv.innerHTML = `
-              <h2>${article.title}</h2>
-              <p><strong>By ${article.author} on ${article.date}</strong></p>
-              ${article.content}
-            `;
-            articleSection.appendChild(articleDiv);
-          });
-        })
-        .catch(error => {
-          console.error('There was a problem fetching the articles:', error);
-        });
-    </script>
 </body>
 </html>
 
